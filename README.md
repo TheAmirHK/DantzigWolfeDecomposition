@@ -1,1 +1,1 @@
-# DantzigWolfeDecomposition
+# Dantzig-Wolfe Decomposition
