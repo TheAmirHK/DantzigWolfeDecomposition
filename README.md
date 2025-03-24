@@ -25,20 +25,20 @@ The problem is decomposed into a master problem and subproblems.
 **Master Problem**<br>
 The master problem coordinates the subproblems and ensures the linking constraints are satisfied. It is formulated as:
 
-$$Maximize: Σ_i Σ_j (c_i^T x_i^j) λ_i^j$$
+$$Maximize: Σ_i Σ_j (c_i^T x_{i,j}) λ_{i,j}$$
 
-$$\text{subject to:} \quad  Σ_i Σ_j (A_i x_i^j) λ_i^j ≤ b,$$   
-$$\quad Σ_j λ_i^j = 1,  \quad \forall i = 1, 2, \dots, N,$$
-$$\quad λ_i^j ≥ 0,     \quad \forall i, j$$
+$$\text{subject to:} \quad  Σ_i Σ_j (A_i x_{i,j}) λ_{i,j} ≤ b,$$   
+$$\quad Σ_j λ_{i,j} = 1,  \quad \forall i = 1, 2, \dots, N,$$
+$$\quad λ_{i,j} ≥ 0,     \quad \forall i, j$$
 
 Where:<br>
-$λ_i^j$: Weight (or coefficient) associated with the j-th extreme point of the i-th subproblem.<br>
+$λ_{i,j}$: Weight (or coefficient) associated with the j-th extreme point of the i-th subproblem.<br>
 $J_i$: Number of extreme points for the i-th subproblem.<br>
 $c_i$: Portion of the objective coefficients corresponding to the i-th subproblem.<br>
 $A_i$: Portion of the linking constraint matrix corresponding to the i-th subproblem.<br>
 
 **Subproblems**<br>
-Each subproblem corresponds to one of the independent blocks in the original problem. The $i-th$ subproblem is formulated as:
+Each subproblem corresponds to one of the independent blocks in the original problem. The $i_{th}$ subproblem is formulated as:
 
 $$Maximize: (c_i - π^T A_i)^T x_i$$
 
@@ -52,7 +52,7 @@ $π$: Vector of dual variables (prices) associated with the linking constraints 
 $x_i$: Vector of decision variables for the i-th subproblem.<br>
 
 **Column Generation**
-The Dantzig-Wolfe decomposition uses column generation to iteratively add new extreme points (x_i^j) to the master problem. The steps are as follows:<br>
+The Dantzig-Wolfe decomposition uses column generation to iteratively add new extreme points $x_{i,j}$ to the master problem. The steps are as follows:<br>
 Solve the restricted master problem (RMP) with a subset of extreme points.<br>
 Use the dual variables (π) from the RMP to solve the subproblems.<br>
 Check if any subproblem can generate a new extreme point that improves the RMP's objective.<br>
